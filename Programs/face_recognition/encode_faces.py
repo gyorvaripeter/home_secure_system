@@ -51,7 +51,8 @@ for (i, imagePath) in enumerate(imagePaths):
 
 	# Lépteti a kódokat
 	for encoding in encodings:
-		# Hozzáad minden kódot és nevet az adatbázishoz 			knownEncodings.append(encoding)
+		# Hozzáad minden kódot és nevet az adatbázishoz 			
+		knownEncodings.append(encoding)
 		knownNames.append(name)
 
 # Leírja az arci kódokat és neveket a lemezre 
