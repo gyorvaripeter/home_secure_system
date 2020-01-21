@@ -28,8 +28,8 @@ detector = cv2.CascadeClassifier(args["cascade"])
 # Inicialja a streamet es elinditja a kamera bemelegiteset
 print("[INFO] starting video stream...")
 #vs = VideoStream(src=0).start() <--webkamerahoz ez kell
-vs = VideoStream(usePiCamera=True).start()
-
+vs = VideoStream(usePiCamera=True, rotation = 180, sensor_mode = 2).start()
+known = False
 time.sleep(2.0)
 led1 = LED(17)
 led2= LED(27)
@@ -84,15 +84,18 @@ while True:
                 
             # meghatarozza a felismertarcok legbovebb halmazat
             name = max(counts, key=counts.get)
-            led1.on()
-            time.sleep(3)
-            led1.off()
+            
         # a nev lista frissitese
         names.append(name)
         if name=="Unknown" :  
             led2.on()
             time.sleep(3)
             led2.off()
+        else:
+            led1.on()
+            time.sleep(3)
+            led1.off()
+            known = True
     # leptetes a felismert arcokon
     for ((top, right, bottom, left), name) in zip(boxes, names):
         # keret rajzolas a fej kore es nev kiirasa
@@ -108,8 +111,7 @@ while True:
     key = cv2.waitKey(1) & 0xFF
 
     # ha a q-gomb lenyomasra kerul befejezodik a folyamat
-    if key == ord("q"):
-        led.off()
+    if known:
         break
 
     # fps szamlalo frissites
