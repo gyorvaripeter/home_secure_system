@@ -2,4 +2,6 @@ Házi biztonsági rendszer Raspberry Pi-vel. A program egy kamera segítségéve
 
 Figyelem: A hálózati feszültséghez való csatlakoztatás, valamint a LED-fények tesztje után kerül üzemképes állapotba maga a rendszer.
 
+Bővebb információ a [wiki](https://github.com/gyorvaripeter/home_secure_system/wiki) oldalon található!
+
 
