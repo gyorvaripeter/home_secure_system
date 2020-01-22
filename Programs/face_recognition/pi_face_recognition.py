@@ -29,6 +29,7 @@ detector = cv2.CascadeClassifier(args["cascade"])
 print("[INFO] starting video stream...")
 #vs = VideoStream(src=0).start() <--webkamerahoz ez kell
 vs = VideoStream(usePiCamera=True, rotation = 180, sensor_mode = 2).start()
+
 known = False
 time.sleep(2.0)
 led1 = LED(17)
@@ -87,15 +88,18 @@ while True:
             
         # a nev lista frissitese
         names.append(name)
+        
+        #zarak nyitasa, zarva hagyas imitalasa ledekkel
         if name=="Unknown" :  
             led2.on()
-            time.sleep(3)
+            time.sleep(2)
             led2.off()
         else:
             led1.on()
-            time.sleep(3)
+            time.sleep(2)
             led1.off()
             known = True
+        
     # leptetes a felismert arcokon
     for ((top, right, bottom, left), name) in zip(boxes, names):
         # keret rajzolas a fej kore es nev kiirasa
@@ -107,21 +111,20 @@ while True:
 
     # megjeleniti a kepet a kepernyon
     cv2.imshow("Frame", frame)
-    cv2.flip(frame,1)
-    key = cv2.waitKey(1) & 0xFF
 
-    # ha a q-gomb lenyomasra kerul befejezodik a folyamat
+    # ha felismert vagy ismeretlen akkor kilep
     if known:
+        # fps szamlalo frissites
+        fps.update()
+
+        # idozito es az fps szamlalo megallitasa, kiirasa
+        fps.stop()
+        print("[INFO] elasped time: {:.2f}".format(fps.elapsed()))
+        print("[INFO] approx. FPS: {:.2f}".format(fps.fps()))
+
+        # egy kis tisztitas
+        cv2.destroyAllWindows()
+        vs.stop()
         break
 
-    # fps szamlalo frissites
-    fps.update()
-
-# idozito es az fps szamlalo megallitasa, kiirasa
-fps.stop()
-print("[INFO] elasped time: {:.2f}".format(fps.elapsed()))
-print("[INFO] approx. FPS: {:.2f}".format(fps.fps()))
-
-# egy kis tisztitas
-cv2.destroyAllWindows()
-vs.stop()
+    
