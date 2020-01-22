@@ -3,13 +3,13 @@
 #
 #   appCam.py
 #  
-#   PiCam Local Web Server with Flask
+#   PiCam Web Szerver Flaskel
 # 
 
 from flask import Flask, render_template, Response
 app = Flask(__name__)
 
-# Raspberry Pi camera module (requires picamera package)
+# Raspberry Pi kamera modul (picamera csomag szukseges)
 from camera_pi import Camera
 import time
 
