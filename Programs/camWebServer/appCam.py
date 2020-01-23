@@ -12,6 +12,7 @@ app = Flask(__name__)
 # Raspberry Pi kamera modul (picamera csomag szukseges)
 from camera_pi import Camera
 import time
+import os
 
 @app.route("/")
 def index():

@@ -11,6 +11,8 @@ while True:
         print('Button Pressed')
         #terminal parancs inditasa a gomb megnyomasara (tartalmazo mappaba
         #lepes .bashrc fajl atirasaval kerult megoldasra
+        #command1 = "python3 /home/pi/home_secure_system/Programs/email-notification/emailnotification.py"
+        #os.system(command1)
         command = "python pi_face_recognition.py --cascade haarcascade_frontalface_default.xml --encodings encodings.pickle"
         os.system(command)
         time.sleep(5)

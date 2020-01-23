@@ -11,6 +11,7 @@ import pickle
 import time
 import cv2
 from gpiozero import LED
+
 #  argumentumparser-ral felepiteni a parncskiadast
 ap = argparse.ArgumentParser()
 ap.add_argument("-c", "--cascade", required=True,
@@ -26,12 +27,14 @@ data = pickle.loads(open(args["encodings"], "rb").read())
 detector = cv2.CascadeClassifier(args["cascade"])
 
 # Inicialja a streamet es elinditja a kamera bemelegiteset
-print("[INFO] starting video stream...")
 #vs = VideoStream(src=0).start() <--webkamerahoz ez kell
+print("[INFO] starting video stream...")
 vs = VideoStream(usePiCamera=True, rotation = 180, sensor_mode = 2).start()
+time.sleep(2)
 
+#command="lxterminal -e python3 email.py"
+#os.system(command)
 known = False
-time.sleep(2.0)
 led1 = LED(17)
 led2= LED(27)
 # fps szamlalo
