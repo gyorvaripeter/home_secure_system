@@ -33,7 +33,7 @@ def send_an_email():
        s.ehlo()  
        s.starttls()  
        s.ehlo()  
-       s.login(user = '2labamkozottnagyobb@gmail.com', password = 'p1e2t3e4r5')  # User id & password
+       s.login(user = '2labamkozottnagyobb@gmail.com', password = '*******')  # User id & password
        #s.send_message(msg)  
        s.sendmail(me, toaddr, msg.as_string())  
        s.quit()  
